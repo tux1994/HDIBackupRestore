@@ -40,6 +40,9 @@
     "app/backup"
   ],
   "cds": {
+    "fiori": {
+      "draft_messages": false
+    },
     "requires": {
       "[production]": {
         "db": "hana",
