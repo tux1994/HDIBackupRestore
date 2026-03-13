@@ -18,6 +18,18 @@ annotate service.Applications with @(
     ]
 );
 annotate service.Applications with @(
+    UI.PresentationVariant : {
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : name,
+                Descending : false,
+            },
+        ],
+        Visualizations : ['@UI.LineItem'],
+    }
+);
+annotate service.Applications with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -29,7 +41,7 @@ annotate service.Applications with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'HDI Containers',
             ID : 'HDIContainers',
-            Target : 'hdiContainers/@UI.LineItem#HDIContainers',
+            Target : 'hdiContainers/@UI.PresentationVariant#HDIContainers',
         },
     ],
     UI.FieldGroup #Application : {
@@ -71,7 +83,7 @@ annotate service.HDIContainers with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Backups',
             ID : 'Backups',
-            Target : 'backups/@UI.LineItem#Backups',
+            Target : 'backups/@UI.PresentationVariant#Backups',
         },
     ],
     UI.FieldGroup #HDIContainer : {
@@ -122,6 +134,18 @@ annotate service.HDIContainers with @(
         },]
 );
 annotate service.HDIContainers with @(
+    UI.PresentationVariant #HDIContainers : {
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : description,
+                Descending : false,
+            },
+        ],
+        Visualizations : ['@UI.LineItem#HDIContainers'],
+    }
+);
+annotate service.HDIContainers with @(
     UI.HeaderInfo : {
         TypeName : 'HDI Container',
         TypeNamePlural : 'HDI Containers',
@@ -159,7 +183,7 @@ annotate service.Backups with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Restores',
             ID : 'Restores',
-            Target : 'imports/@UI.LineItem#Restores',
+            Target : 'imports/@UI.PresentationVariant#Restores',
         },
     ],
     UI.FieldGroup #Backup : {
@@ -211,6 +235,18 @@ annotate service.Imports with @(
             Label : 'Description',
         },]
 );
+annotate service.Imports with @(
+    UI.PresentationVariant #Restores : {
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : createdAt,
+                Descending : true,
+            },
+        ],
+        Visualizations : ['@UI.LineItem#Restores'],
+    }
+);
 annotate service.Backups with @(
     UI.LineItem #Backups : [
         {
@@ -246,6 +282,18 @@ annotate service.Backups with @(
             Value : fromScheduler,
             Label : 'Scheduler?',
         },]
+);
+annotate service.Backups with @(
+    UI.PresentationVariant #Backups : {
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : created,
+                Descending : true,
+            },
+        ],
+        Visualizations : ['@UI.LineItem#Backups'],
+    }
 );
 annotate service.Backups with @(
     UI.FieldGroup #Logs : {
